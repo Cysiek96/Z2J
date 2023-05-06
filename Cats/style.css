@@ -1,0 +1,49 @@
+body {
+  background-color: #a7c957;
+  font-family: "Instrument Serif";
+  overflow: hidden;
+}
+main {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 99%;
+  height: 99%;
+}
+img {
+  width: 20rem;
+  height: 15rem;
+  object-fit: cover;
+}
+.card {
+  background-color: #6a994e;
+  margin: 6rem 1rem;
+  padding: 1rem;
+  max-width: 20rem;
+  max-height: 50rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 0.5rem #386641 solid;
+}
+
+label {
+  margin: 5px;
+  font-weight: bold;
+  font-size: 30px;
+  padding: 5px;
+  letter-spacing: 5px;
+}
+label ~ p {
+  padding: 15px;
+  margin: 10px;
+  width: 90%;
+  height: 80%;
+  border: #6a994e dashed 3px;
+}
+label ~ p:focus {
+  outline: none;
+  border-color: #386641;
+}
