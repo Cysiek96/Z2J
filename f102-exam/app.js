@@ -18,7 +18,12 @@ while (isValid === true) {
 }
 
 function getValues(firstNum = undefined) {
-  const firstValue = firstNum || prompt("Type first number");
+  let firstValue;
+  if (firstNum !== undefined) {
+    firstValue = firstNum;
+  } else {
+    firstValue = prompt("Type first number");
+  }
   const operation = prompt(
     "Type operation which  You want to do (+, -, *, /, %)."
   );
@@ -28,7 +33,7 @@ function getValues(firstNum = undefined) {
 
 function validateValues(firstNum, secondNum, operand) {
   let validation = "";
-  if (firstNum && secondNum && operand !== null) {
+  if (operand !== null) {
     if (String(+firstNum) === "NaN") {
       validation += "First number isn't a number ";
     }
@@ -54,24 +59,33 @@ function calcValues(arrayOfValues) {
   const first = arrayOfValues[0];
   const second = arrayOfValues[1];
   const operand = arrayOfValues[2];
-  console.log(first, second, operand);
-  let result;
+
   switch (true) {
     case operand === "+":
-      result = (first * multiply + second * multiply) / multiply;
-      break;
+      return (result = add(first, second));
     case operand === "-":
-      result = (first * multiply - second * multiply) / multiply;
-      break;
+      return (result = substract(first, second));
     case operand === "*":
-      result = (first * multiply * second * multiply) / multiply ** 2;
-      break;
+      return (result = multiplyCalc(first, second));
     case operand === "/":
-      result = (first * multiply) / (second * multiply);
-      break;
+      return (result = divide(first, second));
     case operand === "%":
-      result = ((first * multiply) % (second * multiply)) / multiply;
-      break;
+      return (result = modulo(first, second));
   }
-  return result;
+}
+
+function add(firstNum, secondNum) {
+  return (firstNum * multiply + secondNum * multiply) / multiply;
+}
+function substract(firstNum, secondNum) {
+  return (firstNum * multiply - secondNum * multiply) / multiply;
+}
+function multiplyCalc(firstNum, secondNum) {
+  return (firstNum * multiply * secondNum * multiply) / multiply ** 2;
+}
+function divide(firstNum, secondNum) {
+  return (firstNum * multiply) / (secondNum * multiply);
+}
+function modulo(firstNum, secondNum) {
+  return ((firstNum * multiply) % (secondNum * multiply)) / multiply;
 }
