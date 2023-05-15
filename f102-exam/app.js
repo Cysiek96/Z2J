@@ -19,7 +19,7 @@ while (isValid === true) {
 
 function getValues(firstNum = undefined) {
   let firstValue;
-  if (firstNum !== undefined) {
+  if (firstNum !== undefined && !isNaN(+firstNum)) {
     firstValue = firstNum;
   } else {
     firstValue = prompt("Type first number");
@@ -42,12 +42,6 @@ function validateValues(firstNum, secondNum, operand) {
     }
     if (!operationAvailabe.includes(operand)) {
       validation += "Operation isn't include in this verison of caluclator";
-    } else {
-      if (operand === "/") {
-        +secondNum !== 0
-          ? validation
-          : (validation += "Why are You trying to divide by 0?");
-      }
     }
   } else {
     validation += "Thanks for using my calcualtor";
@@ -60,16 +54,16 @@ function calcValues(arrayOfValues) {
   const second = arrayOfValues[1];
   const operand = arrayOfValues[2];
 
-  switch (true) {
-    case operand === "+":
+  switch (operand) {
+    case "+":
       return (result = add(first, second));
-    case operand === "-":
+    case "-":
       return (result = substract(first, second));
-    case operand === "*":
+    case "*":
       return (result = multiplyCalc(first, second));
-    case operand === "/":
+    case "/":
       return (result = divide(first, second));
-    case operand === "%":
+    case "%":
       return (result = modulo(first, second));
   }
 }
@@ -84,7 +78,11 @@ function multiplyCalc(firstNum, secondNum) {
   return (firstNum * multiply * secondNum * multiply) / multiply ** 2;
 }
 function divide(firstNum, secondNum) {
-  return (firstNum * multiply) / (secondNum * multiply);
+  if (+secondNum !== 0) {
+    return (firstNum * multiply) / (secondNum * multiply);
+  } else {
+    return "Why are You trying to divide by 0??";
+  }
 }
 function modulo(firstNum, secondNum) {
   return ((firstNum * multiply) % (secondNum * multiply)) / multiply;
