@@ -1,0 +1,65 @@
+body {
+  font-size: larger;
+  font-family: "Times New Roman", Times, serif;
+  counter-reset: count;
+}
+main {
+  position: absolute;
+  top: 25%;
+  left: 35%;
+  display: grid;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+  gap: 1rem 2rem;
+  width: 30rem;
+  height: 10rem;
+}
+.btn {
+  font-family: inherit;
+  padding: 15%;
+  border: 1px solid rgb(135, 134, 125);
+  transition: 0.1s;
+  border-radius: 15%;
+  box-shadow: 1px 2px 5px gray;
+  outline: none;
+}
+
+/* Btn evects : hover and active */
+.btn:nth-of-type(4) {
+  background-color: rgb(255, 204, 0);
+  color: black;
+}
+
+.btn:nth-of-type(4):hover {
+  background-color: green;
+}
+
+.btn:last-child {
+  background-color: green;
+  color: #fff;
+}
+.btn:last-child:hover {
+  background-color: blue;
+}
+.btn:hover {
+  background-color: lightslategray;
+  color: #fff;
+}
+.btn:active {
+  opacity: 0.9;
+  scale: 0.98;
+}
+
+/* Counters */
+.row-1::before {
+  content: counter(count) ". ";
+  counter-increment: count 1;
+}
+
+.row-2::before {
+  content: counter(count, upper-roman) ") ";
+  counter-increment: count 1;
+}
+.row-3::before {
+  content: "[0" counter(count) "] ";
+  counter-increment: count 1;
+}
