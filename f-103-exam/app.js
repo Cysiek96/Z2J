@@ -64,11 +64,14 @@ function getAlert(text = "Do not cheat!", btnText = "That was mistake") {
 function checkWin(classToCheck) {
   let winCondition = 15;
   let draw = 9;
+  // Look for draw condition, but firstly check if user win
   squares.forEach((square) => {
     if (square.innerText !== "") {
       draw--;
     }
   });
+  //
+  // Maps the entire win table and searches for values that subtract from winCondition. A value of 0 indicates a win by some player.
   winningFormat.forEach((win) => {
     win.forEach((idx) => {
       if (squares[idx].classList.contains(classToCheck)) {
@@ -91,6 +94,7 @@ function checkWin(classToCheck) {
       winCondition = 15;
     }
   });
+  // If there are no win, and we fullfil all fields then call the draw.
   if (draw === 0) {
     getAlert("It is draw. Let try to beat the computer", "Once again?");
     return (isWin = true);
