@@ -1,4 +1,6 @@
 const squares = document.querySelectorAll(".gameBoard div");
+// Creating a new elements for displaying messages
+createDomElement();
 const btn = document.querySelector("button.conf");
 const alertWindow = document.querySelector("div.alertWindow");
 const winningFormat = [
@@ -57,7 +59,7 @@ function addCross() {
   iter++;
 }
 function getAlert(text = "Do not cheat!", btnText = "That was mistake") {
-  alertWindow.childNodes[1].innerHTML = text;
+  alertWindow.childNodes[0].innerHTML = text;
   btn.innerText = btnText;
   alertWindow.classList.add("show");
 }
@@ -99,4 +101,15 @@ function checkWin(classToCheck) {
     getAlert("It is draw. Let try to beat the computer", "Once again?");
     return (isWin = true);
   }
+}
+function createDomElement() {
+  const main = document.querySelector("main");
+  const displayWindow = document.createElement("div");
+  displayWindow.classList.add("alertWindow");
+  const messagesDisplay = document.createElement("p");
+  const confirmBtn = document.createElement("button");
+  confirmBtn.classList.add("conf");
+  main.appendChild(displayWindow);
+  displayWindow.appendChild(messagesDisplay);
+  displayWindow.appendChild(confirmBtn);
 }
