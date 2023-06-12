@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Register Now</h1>
+      <form action="#" method="post" id="registrationForm">
+        <div>
+          <label for="name">Name: </label
+          ><input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Type first name"
+          />
+        </div>
+
+        <div>
+          <label for="surname">Surename: </label>
+          <input type="text" id="surname" placeholder="Type surname" />
+        </div>
+
+        <div>
+          <label for="man">Gender: </label>
+          <div class="genderCon">
+            <input type="radio" name="gender" id="man" class="man" />
+            <label for="man">Male</label>
+
+            <input type="radio" name="gender" id="woman" class="woman" />
+            <label for="woman">Female</label>
+          </div>
+        </div>
+
+        <div>
+          <label for="login">Login: </label>
+          <input type="text" id="login" placeholder="Type login" />
+        </div>
+
+        <div>
+          <label for="password">Password: </label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+          />
+        </div>
+
+        <div>
+          <label for="birthDate">Birth Date:</label>
+          <input type="date" id="birthDate" value="" />
+        </div>
+
+        <button>Submit</button>
+      </form>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>

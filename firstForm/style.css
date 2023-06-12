@@ -1,0 +1,95 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d8f3dc;
+  font-size: larger;
+  font-family: "Times New Roman", Times, serif;
+  overflow: hidden;
+}
+h1 {
+  text-align: center;
+}
+form > div {
+  display: flex;
+  justify-content: space-between;
+  margin: 2px;
+}
+
+.container {
+  margin: 3%;
+  padding: 2%;
+  box-shadow: 4px 4px 10px #2d6a4f;
+  border: 2px solid #52b788;
+  height: 7 0vh;
+  width: 30vw;
+  background-color: #95d5b2;
+}
+
+input {
+  margin: 5px 0;
+}
+input:not([type="radio"]) {
+  width: 60%;
+}
+div > div.genderCon {
+  width: 50%;
+  display: flex;
+  justify-content: space-evenly;
+}
+input[type="date"] {
+  width: 60.7%;
+}
+button {
+  background-color: #40916c;
+  display: inline-block;
+  width: 100%;
+  margin: 20px 0;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px #1b4332;
+  transition: transform 1s ease-in-out;
+  font-size: inherit;
+}
+button:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease-in;
+}
+p {
+  color: red;
+  font-size: 15px;
+  text-align: end;
+  margin: 0 0 7px;
+}
+
+@media (max-width: 1400px) {
+  html {
+    font-size: medium;
+  }
+  h1 {
+    font-size: larger;
+  }
+  .container {
+    height: 70vh;
+    margin: 5%;
+  }
+  p {
+    font-size: small;
+  }
+}
+@media (max-width: 900px) {
+  html {
+    font-size: small;
+  }
+  h1 {
+    font-size: medium;
+  }
+  .container {
+    margin: 10%;
+  }
+  button {
+    font: medium;
+  }
+  p {
+    font-size: smaller;
+  }
+}
