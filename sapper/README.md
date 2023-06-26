@@ -31,8 +31,8 @@ In this game, I implemented the basic rules of the game, which are as follows:
 * Added resetting the game with the selected level, by clicking on the smiley face in the middle.
 
 # Buggs:
-- [ ] The game should also be won when fields containing mines are uncovered.
-- [ ] Podczas resetowania gry licznik flag nie jest resetowany.
+- [x] The game should also be won when fields containing mines are uncovered.
+- [x] Podczas resetowania gry licznik flag nie jest resetowany.
 
 ## Sources
 1. [Sapper - Wikipediia](https://en.wikipedia.org/wiki/Minesweeper_(video_game))
