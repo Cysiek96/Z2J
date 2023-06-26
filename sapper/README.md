@@ -9,14 +9,14 @@ In this game, the main rule is to discover all unmined fields. Around each mined
 | Slightly more complicated Numration    |   ![image](https://github.com/Cysiek96/Z2J/assets/113532109/98d73749-6c01-4d14-8d8f-ad7e6db9e94a) | Here we have 2 mines in the neighborhood so values of 1 are added for each mine in the neighborhood. This means that here we have values of 2.|
 |    The main rule   | ![image](https://github.com/Cysiek96/Z2J/assets/113532109/b224b6ae-ffb5-4780-8b43-34f84e9b2128) | This type of deployment is standard for a sapper game. The key skill is to understand what the neighborhood of mines is all about.|
 
-## While playing sapper
+## How to play
 1. At the beginning, choose the difficulty level by selecting the number 1, 2 or 3, which are associated with certain grid dimensions.
 2. Start the main game:
      * Click the left mouse button to reveal a square. This means that if you click the mined button, you will lose the game.
-     * Kliknięcie prawym przyciskiem myszy umożliwia utworzenie flagi, co oznacza, że jest to potencjalne miejsce miny. Ta flaga nie pozwala na kliknięcie tego przycisku lewym przyciskiem myszy. TYLKO kliknięcie flagi prawym przyciskiem myszy pozwala na jej usunięcie.
+     * Right-clicking allows you to create a flag, which means that this is a potential mine site. This flag does not allow you to left-click it. ONLY right-clicking the flag allows you to remove it.
      * After winning or losing, you can click the smiley face to restart the game with the selected difficulty level
 
-## My  sapper variation.
+## My  sapper variation components
 In this game, I implemented the basic rules of the game, which are as follows:
 * Marking the fields around the mine, according to the numbering rules.
 * A counter has been added, indicating how many fields are left to be marked as the potential presence of a mine.
