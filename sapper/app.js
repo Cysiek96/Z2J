@@ -79,7 +79,7 @@ function evetListenerAdd(btn) {
     if (!btn.disabled) {
       e.preventDefault();
       let marekdMinesText = Number(markedMinesCounter.innerText);
-      if (marekdMinesText > 0) {
+      if (marekdMinesText >= 0) {
         if (btn.childElementCount !== 0) {
           if (!btn.firstChild.classList.contains("fa-flag")) {
             btn.classList.add("clicked");
@@ -274,7 +274,9 @@ function isGameOver(btn) {
     }
   } else {
     buttons.forEach((button) => {
-      button.classList.contains("clicked") ? counter++ : "";
+      button.classList.contains("clicked") || button.childElementCount !== 0
+        ? counter++
+        : "";
     });
     if (counter === ruleBook[choosenLevel].row * ruleBook[choosenLevel].col) {
       confirm("YOU WIN. Congratulations!");
@@ -293,6 +295,7 @@ function restartGame() {
     }
   });
   cleaIntervals();
+  markedMinesCounter.innerText = `0${ruleBook[choosenLevel].mines}`;
   timeEl.innerText = "000";
   clicked = 0;
 }
