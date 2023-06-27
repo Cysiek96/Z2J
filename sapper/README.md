@@ -7,8 +7,7 @@ In this game, the main rule is to discover all unmined fields. Around each mined
 | ---      | ---       | ---         |
 | Basic Numeration  | ![image](https://github.com/Cysiek96/Z2J/assets/113532109/2a92d42e-1ee5-421a-974b-70dae0d73a5e)        | Here we have only 1 mine, so it is surrounded by ONLY values of 1. There is no other mine in its vicinity.|
 | Slightly more complicated Numration    |   ![image](https://github.com/Cysiek96/Z2J/assets/113532109/98d73749-6c01-4d14-8d8f-ad7e6db9e94a) | Here we have 2 mines in the neighborhood so values of 1 are added for each mine in the neighborhood. This means that here we have values of 2.|
-|    The main rule   | ![image](![image](https://github.com/Cysiek96/Z2J/assets/113532109/d7b02cd0-f486-4efc-b57d-16ad2e44fd55)
-) | This type of deployment is standard for a sapper game. The key skill is to understand what the neighborhood of mines is all about.|
+|    The main rule   | ![image](![image](https://github.com/Cysiek96/Z2J/assets/113532109/d7b02cd0-f486-4efc-b57d-16ad2e44fd55) | This type of deployment is standard for a sapper game. The key skill is to understand what the neighborhood of mines is all about.|
 
 ## How to play
 1. At the beginning, choose the difficulty level by selecting the number 1, 2 or 3, which are associated with certain grid dimensions.
