@@ -25,9 +25,9 @@ In this game, I implemented the basic rules of the game, which are as follows:
 * Programmed to automatically expose fields (including diagonally) if an empty field is exposed.
 * Added message when all unmined fields are exposed, including "flagged" fields.
 * Added difficulty modes selected via window:
-  - 1 - 8x8 grid, and 10 min.
-  - 2 - 16x16 grid, and 40 min,
-  - 3 - 30x16 grid, and 99 min.
+  - 1 - 8x8 grid, and 10 mines.
+  - 2 - 16x16 grid, and 40 mines,
+  - 3 - 30x16 grid, and 99 mines.
 * Added resetting the game with the selected level, by clicking on the smiley face in the middle.
 
 # Buggs:
