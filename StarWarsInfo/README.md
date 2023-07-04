@@ -28,14 +28,15 @@ Each click on the NEXT button will generate the next 10 items from the SWAPI app
 
 If you reach the end of the data, you will be informed by the disappearance of the NEXT button, which is also implemented for the PREV button.
 
-That's not all, because if you want to know more about the parent planet, you'll be able to click on the name of the planet you want, and a script will run that will create a dynamically populated information card containing data about that planet, such as population or diameter.
+That's not all, because if you want to know more about the parent planet, you'll be able to double click on the name of the planet you want, and a script will run that will create a dynamically populated information card containing data about that planet, such as population or diameter.
 
 ![image](https://github.com/Cysiek96/Z2J/assets/113532109/fce16069-34e2-401f-bd56-216a1db43328)
 
 
 ## To Do:
 
- - [ ] Create a fully responsive version 
+ - [ ] Create a fully responsive version
+ - [x] Prevent the same planet information page from being displayed more than once
 
 ## Sources
 ### - [LIVE PREVIEW](https://codepen.io/Cychu1996/full/gOQxbQx)
