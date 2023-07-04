@@ -105,6 +105,9 @@ function getInfoAboutHomePlanet() {
   const a = document.querySelectorAll("a");
   a[aElementCounter].addEventListener("click", (e) => {
     e.preventDefault();
+  });
+  a[aElementCounter].addEventListener("dblclick", (e) => {
+    e.preventDefault();
     getPlanetInformation(e.target)
       .then(createPlanetContent)
       .then(eventListenerForRemovePlanetCard)
