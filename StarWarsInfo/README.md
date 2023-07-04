@@ -37,6 +37,6 @@ That's not all, because if you want to know more about the parent planet, you'll
 
  - [ ] Create a fully responsive version 
 
-
-## [LIVE PREVIEW](https://codepen.io/Cychu1996/full/gOQxbQx)
-
+## Sources
+### - [LIVE PREVIEW](https://codepen.io/Cychu1996/full/gOQxbQx)
+### - [SWAPI APP](https://swapi.dev/)
