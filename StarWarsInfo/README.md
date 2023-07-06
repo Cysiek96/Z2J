@@ -1,6 +1,7 @@
 
 # Star Wars information page.
-<img alt="Static Badge" src="https://img.shields.io/badge/StarWars-%2303289f"> <img alt="Static Badge" src="https://img.shields.io/badge/SWAPI%20app-%23fca311">
+[<img alt="Static Badge" src="https://img.shields.io/badge/SWAPI%20app-%23fca311">](https://swapi.dev/)
+[<img alt="Static Badge" src="https://img.shields.io/badge/StaWars-LivePreview-%2303289f">](https://codepen.io/Cychu1996/pen/gOQxbQx)
 
 This project was created as a summary after learning about callback module and promises (without async function) using fetch module.
 
@@ -9,7 +10,7 @@ The project is an html mask for displaying data from SWAPI (Star Wars Uniwerse A
 ## More Information
 
 This project was created based on special principles:
- - [x] Display the data received from the SWAPI application. 
+ - [x] Display the data received from the [SWAPI application](https://swapi.dev/). 
  - [x] Provide additional information about objects, i.e. their names, weight, etc.
  - [x] A double request had to be made due to the generation of data regarding the home planet.
  - [x] Added pagination of pages so that data is displayed as clearly as possible.
@@ -38,6 +39,16 @@ That's not all, because if you want to know more about the parent planet, you'll
  - [ ] Create a fully responsive version
  - [x] Prevent the same planet information page from being displayed more than once
 
+
 ## Sources
-### - [LIVE PREVIEW](https://codepen.io/Cychu1996/full/gOQxbQx)
-### - [SWAPI APP](https://swapi.dev/)
+ - [LIVE PREVIEW](https://codepen.io/Cychu1996/full/gOQxbQx)
+ - [SWAPI APP](https://swapi.dev/)
+ - [Google Icons](https://fonts.google.com/icons)
+
+
+### Changes
+- 06.07.2023:
+  - Refactoring options for adding and removing planet site information
+  - An element has been added to make it easier to recognize where to click to display the planet page
+  - Code optimization
+  - Change the icons source - Font Awesome replace by Google Icons
