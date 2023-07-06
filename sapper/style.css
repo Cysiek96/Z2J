@@ -21,20 +21,7 @@ body {
   background-size: cover;
   overflow: hidden;
 }
-i.fa-face-smile {
-  background-color: var(--background-color-primary);
-  box-shadow: 2px 2px 8px var(--background-color-secondary);
-  border: #ced4da solid 2px;
-  padding: 2px;
-  margin: 5px;
-  transition: transform 0.5s ease-in-out;
-  cursor: pointer;
-}
-i.fa-face-smile:hover {
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  transform: scale(1.1);
-}
+
 nav.topNavigation {
   font-size: xx-large;
   font-weight: bold;
@@ -100,6 +87,25 @@ button:hover {
 
 button.clicked > i.fa-land-mine-on {
   color: red;
+}
+
+.material-symbols-outlined {
+  background-color: var(--background-color-primary);
+  box-shadow: 2px 2px 8px var(--background-color-secondary);
+  border: #ced4da solid 2px;
+  padding: 2px;
+  margin: 5px;
+  transition: transform 0.5s ease-in-out;
+  cursor: pointer;
+  color: #f7e302;
+  transform: scale(1.2);
+}
+
+.material-symbols-outlined:hover {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+  color: #f7e302;
+  transition: transform 0.3s ease;
+  transform: scale(1.4);
 }
 @media (max-height: 600px) {
   i {

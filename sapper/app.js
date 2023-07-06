@@ -2,7 +2,7 @@ const mainSection = document.querySelector("section.mainSection");
 const mainEl = document.querySelector("main");
 const markedMinesCounter = document.querySelector(".markedMinesCounter");
 const timeEl = document.querySelector("div.time");
-const faceEl = document.querySelector("i.fa-face-smile");
+const faceEl = document.querySelector("span.material-symbols-outlined");
 
 const choosenLevel = prompt(
   "Choose your difficultyl lvl: (8x8) -1, (16x16) -2, (30x16) -3. Enter only number."
