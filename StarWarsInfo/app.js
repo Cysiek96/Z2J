@@ -5,7 +5,9 @@ const searchingPlanetUrl = planetsUrl + "/?search=";
 
 const container = document.querySelector("article.container");
 const mainEl = document.querySelector("main");
-const buttons = document.querySelectorAll("button");
+const buttons = document.querySelectorAll("article.container button");
+const planetWindowBtn = document.querySelector("button.close-window-button");
+const planetSite = document.querySelector("article.planet-site");
 
 let firstElement = 1;
 let maxItemOnPage = firstElement + 10;
@@ -17,23 +19,14 @@ blurryLoadingScreen();
 generatePersonsCard(0, 10);
 
 buttons.forEach((btn) => {
-  btn.addEventListener("mouseover", () => {
-    btn.classList.add("mouse-over");
-  });
-  btn.addEventListener("mouseout", () => {
-    btn.classList.remove("mouse-over");
-  });
-
   btn.addEventListener("click", () => {
     if (btn.id === "prev") {
       firstElement -= 10;
     } else {
       firstElement += 10;
     }
-
     maxItemOnPage += 10;
-
-    const card = document.querySelectorAll("div");
+    const card = document.querySelectorAll("article.container div.person-data");
     card.forEach((div) => div.remove());
     generatePersonsCard(firstElement, maxItemOnPage);
   });
@@ -43,7 +36,6 @@ buttons.forEach((btn) => {
 
 function generatePersonsCard() {
   aElementCounter = 0;
-
   for (let i = 0; i < 10; i++) {
     getPeoples(i)
       .then(getHomeworldForPerson)
@@ -77,17 +69,18 @@ function getHomeworldForPerson(personObject) {
         }
       })
       .then((planets) => {
-        resolve([personObject, planets]);
+        personObject.planetName = planets.name;
+        resolve(personObject);
       });
   });
 }
 function createDomElementForPerson(jsonElement) {
-  new Promise(() => {
+  return new Promise((resolve) => {
     const divEl = document.createElement("div");
     divEl.classList.add("person-data");
     const sectionEl = document.createElement("section");
     const h3El = document.createElement("h3");
-    h3El.innerText = jsonElement[0].name;
+    h3El.innerText = jsonElement.name;
     divEl.appendChild(h3El);
 
     for (let i = 0; i < 4; i++) {
@@ -99,6 +92,7 @@ function createDomElementForPerson(jsonElement) {
     displayButton();
     divEl.appendChild(sectionEl);
     container.appendChild(divEl);
+    resolve("Done");
   });
 }
 function getInfoAboutHomePlanet() {
@@ -108,6 +102,9 @@ function getInfoAboutHomePlanet() {
   });
   a[aElementCounter].addEventListener("dblclick", (e) => {
     e.preventDefault();
+    planetSite.style.animation = "none";
+    planetSite.style.display = "grid";
+    planetSite.style.animation = "appear 2s";
     getPlanetInformation(e.target)
       .then(createPlanetContent)
       .then(eventListenerForRemovePlanetCard)
@@ -123,19 +120,22 @@ function displayErrorMsg(err) {
 function generateInformation(iteration, jsonElement) {
   switch (iteration) {
     case 0:
-      return `Gender: <strong>${jsonElement[0].gender}</strong>`;
+      return `Gender: <strong>${jsonElement.gender}</strong>`;
     case 1:
-      return `Height: <strong>${jsonElement[0].height}[cm]</strong>`;
+      return `Height: <strong>${jsonElement.height}[cm]</strong>`;
     case 2:
-      return `Weight: <strong>${jsonElement[0].mass}[kg]</strong>`;
+      return `Weight: <strong>${jsonElement.mass}[kg]</strong>`;
     case 3:
-      return `Planet: <strong><a href="">${jsonElement[1].name}</a></strong>`;
+      return `Planet: <strong><a href="">${jsonElement.planetName}</a></strong>`;
   }
 }
 
 // planetScreen
 function getPlanetInformation(a) {
+  console.log(a);
+  console.log(a.innerText);
   return new Promise(function (resolve, rejected) {
+    console.log(searchingPlanetUrl + `${a.innerText}`);
     fetch(searchingPlanetUrl + `${a.innerText}`)
       .then((response) => {
         if (response.ok) {
@@ -151,48 +151,45 @@ function getPlanetInformation(a) {
 function createPlanetContent(planetData) {
   planetData = planetData.results[0];
   new Promise((resolve) => {
-    const planetInformationCard = document.createElement("article");
-    planetInformationCard.classList.add("planet-site");
-    const buttons = document.querySelectorAll("button");
     buttons.forEach((btn) => (btn.style.display = "none"));
-    planetInformationCard.innerHTML = `<div class="planet-main-info">
-    <div>
-      <h1><strong>${planetData.name}</strong></h1>
-      <small>Planet Name</small>
-    </div>
-    <div>
-      <h2><strong>${Number(
-        planetData.population
-      ).toLocaleString()}</strong></h2>
-      <small>Population</small>
-    </div>
-  </div>
-  <div class="planet-second-info">
-    <h3>Diameter: <strong>${Number(
-      planetData.diameter
-    ).toLocaleString()}</strong></h3>
-  </div>
-  <div class="planet-third-info">
-    <h4>Climate: <strong>${planetData.climate}</strong></h4>
-    <h4>Gravity: <strong>${planetData.gravity}</strong></h4>
-    <h4>Terrarian: <strong>${planetData.terrain}</strong></h4>
-  </div>
-  <button class="close-window-button"><i class="fa-solid fa-xmark" style="color: #1fb28d"></i></button>`;
+    planetWindowBtn.style.display = "inline-block";
+    const htmlElementsToFill = [
+      document.querySelector("strong.planetName"),
+      document.querySelector("strong.population"),
+      document.querySelector("strong.diameter"),
+      document.querySelector("strong.climate"),
+      document.querySelector("strong.gravity"),
+      document.querySelector("strong.terrain"),
+    ];
 
-    mainEl.appendChild(planetInformationCard);
+    console.log(htmlElementsToFill);
+    const { name, population, diameter, climate, gravity, terrain } =
+      planetData;
+    const fillData = [
+      name,
+      Number(population).toLocaleString(),
+      Number(diameter).toLocaleString(),
+      climate[0].toUpperCase() + climate.slice(1),
+      gravity[0].toUpperCase() + gravity.slice(1),
+      terrain[0].toUpperCase() + terrain.slice(1),
+    ];
+    htmlElementsToFill.forEach((element, i) => {
+      element.innerText = fillData[i];
+    });
     resolve("DONE");
   });
 }
 
 function eventListenerForRemovePlanetCard() {
-  const planetInformationCard = document.querySelector("article.planet-site");
-  const closeBtn = document.querySelector(".close-window-button");
-  closeBtn.addEventListener("click", (e) => {
+  planetWindowBtn.addEventListener("click", (e) => {
     e.preventDefault();
     displayButton();
-    planetInformationCard.style.animation = "none";
-    planetInformationCard.style.animation = "disapearPlanetSite 2.5s";
-    setTimeout(() => planetInformationCard.remove(), 2000);
+    planetSite.style.animation = "none";
+    planetSite.style.animation = "disapearPlanetSite 2.5s";
+    setTimeout(() => {
+      planetWindowBtn.style.display = "none";
+      planetSite.style.display = "none";
+    }, 2000);
   });
 }
 

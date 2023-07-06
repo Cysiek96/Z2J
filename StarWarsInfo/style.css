@@ -62,7 +62,7 @@ p {
   border-bottom: 2px solid black;
 }
 
-article.container > strong {
+article.container > div.person-data > section > p > strong {
   text-transform: capitalize;
   cursor: pointer;
 }
@@ -74,7 +74,8 @@ h3 {
 }
 
 a {
-  text-decoration: none;
+  text-decoration-line: underline;
+  text-decoration-color: #fca311;
   color: inherit;
 }
 
@@ -104,26 +105,25 @@ article.container > button {
   animation: appear 3s;
 }
 
-article.container > button.mouse-over {
+article.container > button:hover {
   padding: 2%;
   transition: all 0.7s ease-in-out;
-}
-article.container > button.mouse-over:hover {
   box-shadow: 10px 7px 40px #e5e5e5, -10px 7px 40px #e5e5e5,
     10px -7px 40px #e5e5e5, -10px -7px 40px #d5d5d5;
 }
+
 article.container > button:nth-of-type(1) {
   left: -5%;
   justify-content: end;
 }
-article.container > button:nth-of-type(1).mouse-over {
+article.container > button:nth-of-type(1):hover {
   transform: translate(20%, -25%);
 }
 article.container > button:nth-of-type(2) {
   right: -5%;
   justify-content: start;
 }
-article.container > button:nth-of-type(2).mouse-over {
+article.container > button:nth-of-type(2):hover {
   transform: translate(-20%, -25%);
 }
 /*  */
@@ -156,6 +156,7 @@ article.planet-site {
   padding: 2%;
   color: #cbf3f0;
   animation: appearPlanetSite 2s;
+  display: none;
 }
 
 article.planet-site > div > h1,
@@ -169,6 +170,7 @@ article.planet-site > button {
   position: absolute;
   top: 2%;
   right: 2%;
+  display: inline-block;
   background-color: inherit;
   box-shadow: 2px 2px 10px #e5e5e5;
 }
@@ -215,6 +217,15 @@ article.planet-site > div.planet-third-info {
 }
 div.planet-third-info > * {
   margin: 2%;
+}
+
+/* Google symbols required */
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+}
+.closeBtn {
+  color: #e5e5e5;
+  font-weight: bold;
 }
 
 @keyframes disapearPlanetSite {
