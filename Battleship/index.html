@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Battle Ships</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <main class="container">
+      <div class="player-board">
+        <h3>Player Board</h3>
+        <section></section>
+      </div>
+      <div class="computer-board">
+        <h3>Opponent Board</h3>
+        <section id="oponentBoard"></section>
+      </div>
+      <section class="shipsDeploy">
+        <h3>Place Your ships</h3>
+        <div id="carrier" class="ship" draggable="true">Carrier</div>
+        <div id="battleShip" class="ship" draggable="true">Battle ship</div>
+        <div id="destroyer" class="ship" draggable="true">Destroyer</div>
+        <div id="submarine" class="ship" draggable="true">Submarine</div>
+        <div id="patrolBoat" class="ship" draggable="true">Patrol Boat</div>
+        <button class="gameStart">Start the Game</button>
+        <button class="rotate">Row Directory - Click to Switch</button>
+      </section>
+      <article></article>
+    </main>
+
+    <script src="./module/createGrid.js"></script>
+    <script src="./module/evListen&DragandDrop.js"></script>
+    <script src="./module//deployOpponentShips.js"></script>
+    <script src="./module//playgroundStart.js"></script>
+    <!-- <script src="./app.js"></script> -->
+  </body>
+</html>

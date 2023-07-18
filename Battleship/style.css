@@ -1,0 +1,227 @@
+:root {
+  --grid-square-dimmension: 40px;
+  --grid-gap-dimmension: 5px;
+}
+body {
+  overflow: hidden;
+  background: linear-gradient(
+    73deg,
+    rgba(202, 240, 248, 1) 22%,
+    rgba(0, 180, 216, 1) 49%,
+    rgba(0, 119, 182, 1) 100%
+  );
+  background-repeat: no-repeat;
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+main.container {
+  height: 90%;
+  width: 100vw;
+  padding: 5vh 5%;
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  position: relative;
+}
+main.container.game-over {
+  user-select: none;
+}
+div.player-board,
+div.computer-board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 50%;
+  margin: 0 2%;
+  padding: 0.5%;
+  height: 100%;
+  box-shadow: 5px 5px 15px #023e8a, -2px -2px 15px #023e8a;
+}
+
+h3 {
+  letter-spacing: 5px;
+  padding: 10px;
+  text-transform: uppercase;
+  font-size: 130%;
+  border-top: dashed 2px black;
+  border-bottom: dashed 2px black;
+  margin: 0 0 5%;
+}
+section {
+  padding: 5px;
+  display: grid;
+  grid-template: repeat(11, var(--grid-square-dimmension)) / repeat(
+      11,
+      var(--grid-square-dimmension)
+    );
+  gap: var(--grid-gap-dimmension);
+
+  width: calc(
+    11 * (var(--grid-square-dimmension) + var(--grid-gap-dimmension))- var(--grid-gap-dimmension)
+  );
+  height: calc(
+    11 * (var(--grid-square-dimmension) + var(--grid-gap-dimmension)) -
+      var(--grid-gap-dimmension)
+  );
+  box-shadow: 5px 0px 10px #03045e, -2px 0px 5px #03045e, 0px -2px 5px #03045e,
+    0px 5px 10px #03045e;
+}
+section > div.square {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+div.player-board > section > div.square.ship {
+  user-select: none;
+}
+div.computer-board > section#oponentBoard > div {
+  cursor: pointer;
+}
+div.computer-board > section#oponentBoard.game-over > div.square {
+  cursor: not-allowed;
+  user-select: none;
+}
+
+section > div.square:not(:first-child):empty {
+  box-shadow: inset 2px 2px 5px #03045e;
+}
+
+/* Deploy Ships Section */
+
+main > section.shipsDeploy {
+  position: absolute;
+  right: 3%;
+  background: linear-gradient(to top right, #99d98c, #168aad);
+  height: 70%;
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5% 0;
+}
+main > section.shipsDeploy > div {
+  background-color: #fff;
+  width: 25%;
+  display: flex;
+  align-items: center;
+  padding: 0.5%;
+  justify-content: center;
+  user-select: none;
+  cursor: grab;
+}
+main > section.shipsDeploy > div.ship {
+  box-shadow: 3px 3px 5px #03045e;
+  height: 7%;
+  margin-bottom: 1%;
+}
+main > section.shipsDeploy > div.ship:hover {
+  animation: heartBeat 0.7s infinite alternate-reverse;
+}
+
+main > section.shipsDeploy > div#carrier {
+  width: calc(40px * 5 + 4 * var(--grid-gap-dimmension));
+}
+main > section.shipsDeploy > div#battleShip {
+  width: calc(40px * 4);
+}
+main > section.shipsDeploy > div#destroyer,
+main > section.shipsDeploy > div#submarine {
+  width: calc(40px * 3);
+}
+main > section.shipsDeploy > div#partolBoat {
+  width: calc(40px * 2);
+}
+
+main > section.shipsDeploy > button {
+  padding: 3% 2%;
+  margin: 3% 0;
+  border: none;
+  width: 50%;
+  box-shadow: 2px 2px 5px #000;
+  transition: all 0.5s;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+main > section.shipsDeploy > button.gameStart {
+  display: none;
+  animation: heartBeat 0.7s infinite alternate-reverse;
+}
+
+article {
+  position: absolute;
+  top: 25%;
+  background: linear-gradient(
+    87deg,
+    rgba(217, 237, 146, 1) 30%,
+    rgba(153, 217, 140, 1) 57%,
+    rgba(118, 200, 147, 1) 84%
+  );
+  height: 50%;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 10px 10px 20px;
+  font-size: xx-large;
+  transform: scale(1);
+  display: none;
+  animation: appear 1s ease-in;
+}
+
+@keyframes heartBeat {
+  from {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+@keyframes appear {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@media (max-width: 1250px) {
+  section {
+    grid-template: repeat(11, 30px) / repeat(11, 30px);
+    gap: 2px;
+    width: calc(11 * (30px + 2px) - 2px);
+    height: calc(11 * (30px + 2px) - 2px);
+  }
+  main > section.shipsDeploy {
+    right: 3%;
+    height: 50%;
+    padding: 5% 0;
+  }
+  div.player-board,
+  div.computer-board {
+    height: 80%;
+  }
+  main.container {
+    height: 90%;
+    padding: 15vh 5%;
+  }
+  main > section.shipsDeploy > button {
+    padding: 2% 1%;
+    margin: 2% 0;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  main > section.shipsDeploy > div.ship {
+    height: 5%;
+  }
+}
