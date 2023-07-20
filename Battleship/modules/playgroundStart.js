@@ -1,20 +1,20 @@
 const shipsToDestroy = [[], []];
 let clicked = 0;
 const oppoeneBoardSite = document.querySelector("section#oponentBoard");
-opponentSqauresBoard.forEach((opponentSquare, i) => {
-  opponentSquare.addEventListener("click", (e) => {
+
+opponentSqauresBoard.forEach((opponentSquare) => {
+  opponentSquare.addEventListener("click", () => {
     if (clicked === 0) {
       createDeployedShipList(shipsToDestroy);
     }
-    if (!oppoeneBoardSite.classList.contains("game-over")) {
-      if (
-        opponentSquare.innerText !== "O" &&
-        opponentSquare.innerText !== "X"
-      ) {
-        shotShipO(opponentSquare, "opponent");
-        isGameOver("opponent");
-        allComputerActions();
-      }
+    if (
+      !oppoeneBoardSite.classList.contains("game-over") &&
+      opponentSquare.innerText !== "O" &&
+      opponentSquare.innerText !== "X"
+    ) {
+      shotShipO(opponentSquare, "opponent");
+      isGameOver("opponent");
+      allComputerActions();
     }
     clicked++;
   });
@@ -50,7 +50,10 @@ function createDeployedShipList(list) {
     y === 0
       ? (whichBoardSiteYouShot = "opponent")
       : (whichBoardSiteYouShot = "player");
-    const girdToSearchForIndex = y === 0 ? opponentSqauresBoard : squares;
+    const girdToSearchForIndex = getValuesByBoardSite(
+      whichBoardSiteYouShot,
+      "grid"
+    );
     for (let i = 0; i < 5; i++) {
       list[y][i] = Object.values(
         document.querySelectorAll(`div.${whichBoardSiteYouShot}-${name[i]}`)
@@ -71,22 +74,19 @@ function shotShipO(square, boardSite) {
     "Submarine",
     "Patrol Boat",
   ];
-  const gridToSearch =
-    boardSite === "opponent" ? opponentSqauresBoard : squares;
+  const gridToSearch = getValuesByBoardSite(boardSite, "grid");
   const shotSquareIndex = gridToSearch.indexOf(square);
-  const isInShipsArray = shipGridContainShotSqareIndex(
-    boardSite,
-    shotSquareIndex
-  );
-  console.log(isInShipsArray);
-  if (isInShipsArray[0]) {
+  const { existInShipsArray, untrackedShipFragment, shipToDrownIndex } =
+    shipGridContainShotSqareIndex(boardSite, shotSquareIndex);
+
+  if (existInShipsArray) {
     square.style.backgroundColor = "red";
     square.innerText = "X";
-    if (isInShipsArray[1] === 0) {
+    if (untrackedShipFragment === 0) {
       alert(
-        `${
-          boardSite === "player" ? "The Computer" : "Nice, You"
-        } destroy the ship: ${valuesForClassLists[isInShipsArray[2]]}`
+        `${getValuesByBoardSite(boardSite, "msg")} destroy the ship: ${
+          valuesForClassLists[shipToDrownIndex]
+        }`
       );
     }
   } else {
@@ -94,33 +94,42 @@ function shotShipO(square, boardSite) {
   }
 }
 function shipGridContainShotSqareIndex(boardSite, squareIndexNumber) {
-  let boardSiteIndex = boardSite === "opponent" ? 0 : 1;
+  let boardSiteIndex = getValuesByBoardSite(boardSite);
   for (let shipArray of shipsToDestroy[boardSiteIndex]) {
     for (let shipIndex of shipArray) {
       if (shipIndex === squareIndexNumber) {
-        shipArray.splice(shipArray.indexOf(shipIndex), 1);
-        return [
-          true,
-          shipArray.length,
-          shipsToDestroy[boardSiteIndex].indexOf(shipArray),
-        ];
+        shipArray.splice(shipArray.indexOf(shipIndex), 1, null);
+        let sum = shipArray.length;
+        shipArray.forEach((index) => {
+          if (index === null) {
+            sum--;
+          }
+        });
+        return {
+          existInShipsArray: true,
+          untrackedShipFragment: sum,
+          shipToDrownIndex: shipsToDestroy[boardSiteIndex].indexOf(shipArray),
+        };
       }
     }
   }
-  return [false, 1];
+  return {
+    existInShipsArray: false,
+    untrackedShipFragment: undefined,
+  };
 }
 
 function isGameOver(boardSite) {
-  let arrayNum = boardSite === "opponent" ? 0 : 1;
+  let arrayNum = getValuesByBoardSite(boardSite);
   let sum = 0;
   for (let i = 0; i < 5; i++) {
-    sum += shipsToDestroy[arrayNum][i].length;
+    shipsToDestroy[arrayNum][i].forEach((index) =>
+      index === null ? "" : sum++
+    );
   }
 
   if (sum === 0) {
     createWinInfo(boardSite);
-  } else {
-    return sum;
   }
 }
 function createWinInfo(winner) {
@@ -132,4 +141,23 @@ function createWinInfo(winner) {
       : " WOOOW, You did it. You beat the computer! <3 ";
   articelEl.innerText = msg;
   articelEl.style.display = "flex";
+}
+
+function getValuesByBoardSite(boardSite, elementToGet = "index") {
+  if (elementToGet === "index") {
+    if (boardSite === "opponent") {
+      return 0;
+    }
+    return 1;
+  } else if (elementToGet === "grid") {
+    if (boardSite === "opponent") {
+      return opponentSqauresBoard;
+    }
+    return squares;
+  } else if (elementToGet === "msg") {
+    if (boardSite === "opponent") {
+      return "Nice, You";
+    }
+    return "The Computer";
+  }
 }
