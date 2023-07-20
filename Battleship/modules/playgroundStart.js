@@ -1,4 +1,4 @@
-const shipsToDestroy = [[], []];
+const shipsToDestroy = { player: [], opponent: [] };
 let clicked = 0;
 const oppoeneBoardSite = document.querySelector("section#oponentBoard");
 
@@ -50,17 +50,14 @@ function createDeployedShipList(list) {
     y === 0
       ? (whichBoardSiteYouShot = "opponent")
       : (whichBoardSiteYouShot = "player");
-    const girdToSearchForIndex = getValuesByBoardSite(
-      whichBoardSiteYouShot,
-      "grid"
-    );
+    const girdToSearchForIndex = getValuesByBoardSite(whichBoardSiteYouShot);
     for (let i = 0; i < 5; i++) {
-      list[y][i] = Object.values(
+      list[whichBoardSiteYouShot][i] = Object.values(
         document.querySelectorAll(`div.${whichBoardSiteYouShot}-${name[i]}`)
       );
       // Change the array element into index
-      list[y][i].forEach((el, z) => {
-        list[y][i][z] = girdToSearchForIndex.indexOf(el);
+      list[whichBoardSiteYouShot][i].forEach((el, z) => {
+        list[whichBoardSiteYouShot][i][z] = girdToSearchForIndex.indexOf(el);
       });
     }
   }
@@ -74,10 +71,10 @@ function shotShipO(square, boardSite) {
     "Submarine",
     "Patrol Boat",
   ];
-  const gridToSearch = getValuesByBoardSite(boardSite, "grid");
+  const gridToSearch = getValuesByBoardSite(boardSite);
   const shotSquareIndex = gridToSearch.indexOf(square);
   const { existInShipsArray, untrackedShipFragment, shipToDrownIndex } =
-    shipGridContainShotSqareIndex(boardSite, shotSquareIndex);
+    searchForIndexInGrid(boardSite, shotSquareIndex);
 
   if (existInShipsArray) {
     square.style.backgroundColor = "red";
@@ -93,9 +90,8 @@ function shotShipO(square, boardSite) {
     square.innerText = "O";
   }
 }
-function shipGridContainShotSqareIndex(boardSite, squareIndexNumber) {
-  let boardSiteIndex = getValuesByBoardSite(boardSite);
-  for (let shipArray of shipsToDestroy[boardSiteIndex]) {
+function searchForIndexInGrid(boardSite, squareIndexNumber) {
+  for (let shipArray of shipsToDestroy[boardSite]) {
     for (let shipIndex of shipArray) {
       if (shipIndex === squareIndexNumber) {
         shipArray.splice(shipArray.indexOf(shipIndex), 1, null);
@@ -108,7 +104,7 @@ function shipGridContainShotSqareIndex(boardSite, squareIndexNumber) {
         return {
           existInShipsArray: true,
           untrackedShipFragment: sum,
-          shipToDrownIndex: shipsToDestroy[boardSiteIndex].indexOf(shipArray),
+          shipToDrownIndex: shipsToDestroy[boardSite].indexOf(shipArray),
         };
       }
     }
@@ -120,14 +116,12 @@ function shipGridContainShotSqareIndex(boardSite, squareIndexNumber) {
 }
 
 function isGameOver(boardSite) {
-  let arrayNum = getValuesByBoardSite(boardSite);
   let sum = 0;
   for (let i = 0; i < 5; i++) {
-    shipsToDestroy[arrayNum][i].forEach((index) =>
+    shipsToDestroy[boardSite][i].forEach((index) =>
       index === null ? "" : sum++
     );
   }
-
   if (sum === 0) {
     createWinInfo(boardSite);
   }
@@ -143,13 +137,8 @@ function createWinInfo(winner) {
   articelEl.style.display = "flex";
 }
 
-function getValuesByBoardSite(boardSite, elementToGet = "index") {
-  if (elementToGet === "index") {
-    if (boardSite === "opponent") {
-      return 0;
-    }
-    return 1;
-  } else if (elementToGet === "grid") {
+function getValuesByBoardSite(boardSite, elementToGet = "grid") {
+  if (elementToGet === "grid") {
     if (boardSite === "opponent") {
       return opponentSqauresBoard;
     }
