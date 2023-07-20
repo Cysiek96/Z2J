@@ -99,6 +99,14 @@ This code was the remedy to my problems. This function looks at the direction - 
     }
 ```  
 
+### ChangeLog
+* 20.07.2023:
+  * For greater clarity, the main array has been changed to an object that stores the position of the ships along with the players' game pages. 
+  * Changed the function of shot down boats so as not to remove their indexes but set them to null value, for more clarity.
+  * Added a function based on table pages (getValuesByBoardSite).
+  * In addition, unnecessary code was removed from the getValuesByBoardSite function.
+  * Code optimization
+
 ## Sources 
 1. [Battle Ship Game](https://en.wikipedia.org/wiki/Battleship_(game))
 2. [LivePreview](https://codepen.io/Cychu1996/full/LYXmdQY)
