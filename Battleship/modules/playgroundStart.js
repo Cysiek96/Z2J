@@ -1,29 +1,28 @@
 const shipsToDestroy = [[], []];
-
-opponentSqauresBoard.forEach((opponentSquare) => {
-  opponentSquare.addEventListener("click", () => {
-    if (
-      !document
-        .querySelector("section#oponentBoard")
-        .classList.contains("game-over")
-    ) {
+let clicked = 0;
+const oppoeneBoardSite = document.querySelector("section#oponentBoard");
+opponentSqauresBoard.forEach((opponentSquare, i) => {
+  opponentSquare.addEventListener("click", (e) => {
+    if (clicked === 0) {
+      createDeployedShipList(shipsToDestroy);
+    }
+    if (!oppoeneBoardSite.classList.contains("game-over")) {
       if (
         opponentSquare.innerText !== "O" &&
         opponentSquare.innerText !== "X"
       ) {
         shotShipO(opponentSquare, "opponent");
-        createNonShotShipsList(shipsToDestroy, "opponent");
         isGameOver("opponent");
         allComputerActions();
       }
     }
+    clicked++;
   });
 });
 
 function allComputerActions(boardSiteToShot = "player") {
   const number = computerShot();
   shotShipO(squares[number], boardSiteToShot);
-  createNonShotShipsList(shipsToDestroy, boardSiteToShot);
   isGameOver(boardSiteToShot);
 }
 
@@ -38,7 +37,7 @@ function computerShot() {
   return randomNonShotSquare;
 }
 
-function createNonShotShipsList(list, whichBoardSiteYouShot) {
+function createDeployedShipList(list) {
   const name = [
     "carrier",
     "battleShip",
@@ -46,52 +45,73 @@ function createNonShotShipsList(list, whichBoardSiteYouShot) {
     "submarine",
     "patrolBoat",
   ];
+  let whichBoardSiteYouShot;
   for (let y = 0; y < 2; y++) {
+    y === 0
+      ? (whichBoardSiteYouShot = "opponent")
+      : (whichBoardSiteYouShot = "player");
+    const girdToSearchForIndex = y === 0 ? opponentSqauresBoard : squares;
     for (let i = 0; i < 5; i++) {
-      list[y][i] = document.querySelectorAll(
-        `div.${whichBoardSiteYouShot}-${name[i]}`
+      list[y][i] = Object.values(
+        document.querySelectorAll(`div.${whichBoardSiteYouShot}-${name[i]}`)
       );
+      // Change the array element into index
+      list[y][i].forEach((el, z) => {
+        list[y][i][z] = girdToSearchForIndex.indexOf(el);
+      });
     }
   }
 }
 
 function shotShipO(square, boardSite) {
-  const valuesForClassLists = {
-    carrier: " Carrier Ship",
-    battleShip: "Battle Ship",
-    destroyer: "Destroyer",
-    submarine: "Submarine",
-    patrolBoat: "Patrol Boat",
-  };
-
-  if (square.classList.contains("ship")) {
+  const valuesForClassLists = [
+    " Carrier Ship",
+    "Battle Ship",
+    "Destroyer",
+    "Submarine",
+    "Patrol Boat",
+  ];
+  const gridToSearch =
+    boardSite === "opponent" ? opponentSqauresBoard : squares;
+  const shotSquareIndex = gridToSearch.indexOf(square);
+  const isInShipsArray = shipGridContainShotSqareIndex(
+    boardSite,
+    shotSquareIndex
+  );
+  console.log(isInShipsArray);
+  if (isInShipsArray[0]) {
     square.style.backgroundColor = "red";
     square.innerText = "X";
-    const typeOfShip =
-      boardSite === "opponent"
-        ? square.classList[2].slice(9)
-        : square.classList[2].slice(7);
-    const existingShip = document.querySelectorAll(
-      `.${square.classList[2]}`
-    ).length;
-    valuesForClassLists.typeOfShip;
-    square.classList.remove(square.classList[2]);
-    square.classList.remove("ship");
-
-    if (existingShip === 1) {
+    if (isInShipsArray[1] === 0) {
       alert(
         `${
           boardSite === "player" ? "The Computer" : "Nice, You"
-        } destroy the ship: ${valuesForClassLists[typeOfShip]}`
+        } destroy the ship: ${valuesForClassLists[isInShipsArray[2]]}`
       );
     }
   } else {
     square.innerText = "O";
   }
 }
+function shipGridContainShotSqareIndex(boardSite, squareIndexNumber) {
+  let boardSiteIndex = boardSite === "opponent" ? 0 : 1;
+  for (let shipArray of shipsToDestroy[boardSiteIndex]) {
+    for (let shipIndex of shipArray) {
+      if (shipIndex === squareIndexNumber) {
+        shipArray.splice(shipArray.indexOf(shipIndex), 1);
+        return [
+          true,
+          shipArray.length,
+          shipsToDestroy[boardSiteIndex].indexOf(shipArray),
+        ];
+      }
+    }
+  }
+  return [false, 1];
+}
 
 function isGameOver(boardSite) {
-  let arrayNum = boardSite === "opponent" ? 1 : 0;
+  let arrayNum = boardSite === "opponent" ? 0 : 1;
   let sum = 0;
   for (let i = 0; i < 5; i++) {
     sum += shipsToDestroy[arrayNum][i].length;
