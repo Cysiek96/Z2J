@@ -1,0 +1,126 @@
+:root {
+  --background-color-primary: #495057;
+  --background-color-secondary: #343a40;
+}
+main {
+  height: calc(8 * 50px + 11%);
+  width: calc(8 * 50px + 2%);
+  overflow: hidden;
+  margin: 15vh 35vw;
+  border: 7.5px solid var(--background-color-primary);
+  box-shadow: 5px 5px 20px var(--background-color-secondary);
+  background-color: var(--background-color-primary);
+}
+body {
+  font-family: "Orbitron", sans-serif;
+  background: linear-gradient(to top left, #023e8a, #00b4d8, #90e0ef);
+  background-repeat: no-repeat;
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
+  overflow: hidden;
+}
+
+nav.topNavigation {
+  font-size: xx-large;
+  font-weight: bold;
+  display: flex;
+  height: 9%;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #edede9;
+  border: 7.5px solid var(--background-color-primary);
+}
+section {
+  border: 7.5px solid var(--background-color-primary);
+  background-color: var(--background-color-primary);
+  display: grid;
+  gap: 0;
+  overflow: hidden;
+}
+div:not(.smile) {
+  border: 3px solid var(--background-color-secondary);
+  background-color: var(--background-color-primary);
+  font-size: 80%;
+  padding: 0 3%;
+  letter-spacing: 5px;
+  text-align: center;
+  color: red;
+  width: 20%;
+}
+
+button {
+  color: transparent;
+  width: calc(50px);
+  height: 50px;
+  padding: 5%;
+  background-color: #023e8a;
+  font-family: inherit;
+  font-size: x-small;
+  color: transparent;
+  transition: background-color 1.5s ease;
+}
+button.clicked {
+  box-shadow: inset 5px 5px 15px #03045e;
+  color: wheat;
+}
+button.clicked:hover {
+  background-color: inherit;
+}
+button.clicked[value="1"] {
+  color: #219ebc;
+}
+button.clicked[value="2"] {
+  color: green;
+}
+button.clicked[value="3"] {
+  color: red;
+}
+button.clicked[value="4"] {
+  color: purple;
+}
+button:hover {
+  background-color: #03045e;
+  transition: background-color 0.2s ease;
+}
+
+button.clicked > i.fa-land-mine-on {
+  color: red;
+}
+
+.material-symbols-outlined {
+  background-color: var(--background-color-primary);
+  box-shadow: 2px 2px 8px var(--background-color-secondary);
+  border: #ced4da solid 2px;
+  padding: 2px;
+  margin: 5px;
+  transition: transform 0.5s ease-in-out;
+  cursor: pointer;
+  color: #f7e302;
+  transform: scale(1.2);
+}
+button > img {
+  /* background-color: ; */
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+}
+button > img.mine {
+  display: none;
+  color: white;
+}
+button.clicked > img {
+  display: block;
+}
+.material-symbols-outlined:hover {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+  color: #f7e302;
+  transition: transform 0.3s ease;
+  transform: scale(1.4);
+}
+@media (max-height: 600px) {
+  i {
+    transform: scale(0.9);
+  }
+}
