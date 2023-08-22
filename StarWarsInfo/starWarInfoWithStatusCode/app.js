@@ -104,7 +104,7 @@ function getPeoples(i) {
         } else {
           rejected([
             `Cannot find a people with this number ${firstElement + i}`,
-            "200",
+            "404",
           ]);
         }
       })
