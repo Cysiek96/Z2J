@@ -63,10 +63,12 @@ function getSearchingElemnt(searchingValue) {
         }
         rejected([
           `Request succesully, but information not found: ${searchingValue}`,
-          "200",
+          `${response.status}`,
         ]);
       })
-      .catch((e) => rejected([`Something goes wrong ${e}`, "404"]));
+      .catch((e) => {
+        rejected([`Something goes wrong ${e}`]);
+      });
   });
 }
 
@@ -104,12 +106,14 @@ function getPeoples(i) {
         } else {
           rejected([
             `Cannot find a people with this number ${firstElement + i}`,
-            "404",
+            `${response.status}`,
           ]);
         }
       })
       .then((personObject) => resolve(personObject))
-      .catch((e) => rejected(["Bad request. Cannot find people", "404"]));
+      .catch((err) =>
+        rejected(["Bad request. Cannot find people", "404", err])
+      );
   });
 }
 function getHomeworldForPerson(personObject) {
@@ -119,7 +123,10 @@ function getHomeworldForPerson(personObject) {
         if (response.ok) {
           return response.json();
         } else {
-          rejected(["Can not get home info, but request succesfull", "200"]);
+          rejected([
+            "Can not get home info, but request succesfull",
+            `${response.status}`,
+          ]);
         }
       })
       .then((planets) => {
@@ -167,7 +174,8 @@ function getInfoAboutHomePlanet() {
   aElementCounter++;
 }
 
-function displayErrorMsg(err = ["Something goes wrong", "404"]) {
+function displayErrorMsg(err) {
+  console.log(err);
   const errMsg = err[0];
   const statusCode = err[1];
   const infomationElement = document.createElement("section");
@@ -198,7 +206,6 @@ function generateInformation(iteration, jsonElement) {
 
 function deletePresentObject(whatToDo = "remove") {
   const card = document.querySelectorAll("article.container div.person-data");
-  console.log(card);
   if (whatToDo === "remove") {
     card.forEach((div) => div.remove());
   } else {
@@ -215,7 +222,7 @@ function getPlanetInformation(a) {
         if (response.ok) {
           return response.json();
         } else {
-          rejected("NOT OK");
+          rejected("Can not find this plante", `${response.status}`);
         }
       })
       .then((planetData) => resolve(planetData));
@@ -236,7 +243,6 @@ function createPlanetContent(planetData) {
       document.querySelector("strong.terrain"),
     ];
 
-    console.log(htmlElementsToFill);
     const { name, population, diameter, climate, gravity, terrain } =
       planetData;
     const fillData = [
