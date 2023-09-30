@@ -19,7 +19,7 @@
 This application is more advanced than the previous one, which can be found [here](#TUTAJ-MÓJ-GITHUB-do-poprzednije-wersji). It is also worth mentioning that this application is developed under special, more advanced rules, which you can read more about in this [section](#Special-Principles). <br>
 The project has a legitimate name, which is also listed in the site title. I have also changed quite a bit in the GUI, which I hope is clearer, containing more information that is related to that particular person from the Star Wars universe.  The graphics have been radically changed, including a person view, a planet view, and a new view of the machines, which are represented by spheres on the person card, has been added. I hope this view will be more user-friendly. I've also added some improvements, such as local storage services, a search bar where we can search for a specific person, a return button to the main menu, and error message display.  It's worth mentioning that all this data is generated dynamically - the data is retrieved using the [SWAPI application]((https://swapi.dev/)).
 
-## Special Principles
+## [Special Principles](#Table-of-content)
 
 This project was created based on special principles:
  - Display the data received from the [SWAPI application](https://swapi.dev/).
@@ -29,7 +29,7 @@ This project was created based on special principles:
  - Create function which support error handling.
  - Use localstorage to display data from previous usage.
 
-## Guide
+## [Guide](#Table-of-content)
 
 Right before some data will appear we have some inner screen which is represented by blury loading screen. Immediately after that, we will be able to see 2 cards, which are dynamically downloaded data from the SWAPI application and entered directly into the created card object.
 
@@ -44,7 +44,7 @@ In addition, here we have several navigation tools, which are represented by the
 
 
 The appearance of the cards is the same for each generated data. The only difference is the number of vehicles that are inserted compared to their number in the Swapi database.
-### Person Panel
+### [Person Panel](#Table-of-content)
 
 This view is a new layout, completely different from the older version. 
 
@@ -54,15 +54,21 @@ As we can see, this item is created as a grid that is divided by 5 elements: nam
 
 We can click on items that are marked with a yellowish underline, which means we can click on the name of the planet Home, as well as on the "bubble" of each machine. 
 
-#### Planet Panel
+#### [Planet Panel](#Table-of-content)
 
-Not only the peron display card was changed, but planet menu also. As we can see in the previous project this planet menu  is genereted and fill fileds in cards as same as now, but in this time the layout was changed and planet image was added. This image is dynamically inserted in compatision to terrain, but i was lack of planet spheres images which fit exactly into this specific planet terrain, so most of this planets have this one image. (Sprawdzić dla któej planety podmienia się ta wartośc i dopisać jako przykłądj ze jest do dynamiczne. )
+Not only the peron display card was changed, but planet menu also. As we can see in the previous project this planet menu  is genereted and fill fileds in cards as same as now, but in this time the layout was changed and planet image was added. This image is dynamically inserted in compatision to terrain, but i was lack of planet spheres images which fit exactly into this specific planet terrain, so most of this planets have this one image. 
+
 
 ![image](https://github.com/Cysiek96/Z2J/assets/113532109/8938b5c5-28d7-45d9-b473-7008030528a4)
 
+As we can see, below we have an example with a dynamically added image of the planet. For those who do not believe, please search for LOBOT.
+
+![image](https://github.com/Cysiek96/Z2J/assets/113532109/51c7643f-9fa2-4cfc-ad36-e2636c13f3c7)
+
+
 I hope this layout looks nicer and clearer than the old one, not only for me.
 
-#### Machine Panel
+#### [Machine Panel](#Table-of-content)
 
 The machine's context menu is also a new feature that was created as an addition to an older version of the StarWars Person Hightlight project. The layout of the main view grid is divided into several sections:  The name of the machine (1), (2) an image that matches the machine's category,(3) basic information about that item, and at least the cost(4). If we want any information, we should click the balloon, which is the close button if we are already displaying the tab.   
 
@@ -72,7 +78,7 @@ The machine's context menu is also a new feature that was created as an addition
 It is worth mentioning that we can close the machine window just by clicking the same button. Another bubble will not affect the program.
 
 
-### Other Elements
+### [Other Elements](#Table-of-content)
 As mentioned earlier, this program has many different elements, which are the navigation elements and the search bar.
 1. Return to the basic view - this button will appear only if we load data from the locale storage, searching for an person, and also if we use the next or previous button - but only if the generated item does not show us the first two.
 1. Buttons: prev and next - this item generates 2 items next or previous from the SWAPI application database. These buttons are displayed only when we have not reached the minimum and maximum in the database.
@@ -92,14 +98,14 @@ As mentioned earlier, this program has many different elements, which are the na
 
 ![image](https://github.com/Cysiek96/Z2J/assets/113532109/e841c3fa-5dba-461b-b88f-8cc5513ff89c)
 
-## Solved Problems
+## [Solved Problems](#Table-of-content)
 
 - [x]  Local storage does not return an error if the search result contains only one item, and we refresh the page
 - [x]  The next and previous buttons do not generate and display more than 2 items simultaneously.
 - [x]  Planet menu returns only one displayed item at a time 
 - [x]  The machine element creates only one view and prevents the creation of other views. Also, other bubbles do not affect this view.
 
-## Roadmap:
+## [Roadmap](#Table-of-content)
 - [ ] Allow users to search by categories other than person
 - [ ] Allow the user to observe two planetary elements on one screen - the view of one planet does not affect the other.
 - [ ] Fix the smaller bugs
@@ -107,11 +113,11 @@ As mentioned earlier, this program has many different elements, which are the na
 - [ ] Search / Create different planetary spheres that can represent more than just a few planets img
 
 
-## Sources
+## [Sources](#Table-of-content)
 - [SWAPI APP](https://swapi.dev/)
 - [Google Icons](https://fonts.google.com/icons)
 - [Vite](#https://vitejs.dev/)
 - [Axios](#https://www.npmjs.com/package/axios)
 
 
-### Changes
+### [Changes](#Table-of-content)
