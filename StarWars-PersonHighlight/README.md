@@ -10,7 +10,7 @@
 1. [Change Log](#Changes)
 
 
-# Star Wars Person Highlight
+# [Star Wars Person Highlight](#Table-of-content)
 [<img alt="Static Badge" src="https://img.shields.io/badge/SWAPI%20app-%23fca311">](https://swapi.dev/)
 [<img alt="Static Badge" src="https://img.shields.io/badge/Star-Wars-blue">](https://en.wikipedia.org/wiki/Star_Wars)
 [<img alt="Static Badge" src="https://img.shields.io/badge/Vite-0eb7eb">](https://vitejs.dev/)
