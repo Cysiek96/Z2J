@@ -24,8 +24,8 @@ The project has a legitimate name, which is also listed in the site title. I hav
 This project was created based on special principles:
  - Display the data received from the [SWAPI application](https://swapi.dev/).
  - Project  need to be create with use modules:
-    - [Vite](#https://vitejs.dev/)
-    - [Axios](#https://www.npmjs.com/package/axios)
+    - [Vite](https://vitejs.dev/)
+    - [Axios](https://www.npmjs.com/package/axios)
  - Create function which support error handling.
  - Use localstorage to display data from previous usage.
 
@@ -116,8 +116,8 @@ As mentioned earlier, this program has many different elements, which are the na
 ## [Sources](#Table-of-content)
 - [SWAPI APP](https://swapi.dev/)
 - [Google Icons](https://fonts.google.com/icons)
-- [Vite](#https://vitejs.dev/)
-- [Axios](#https://www.npmjs.com/package/axios)
+- [Vite](https://vitejs.dev/)
+- [Axios](https://www.npmjs.com/package/axios)
 
 
 ### [Changes](#Table-of-content)
