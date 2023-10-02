@@ -1,7 +1,7 @@
 ### Table Of content
 1. [Project Introduction](#star-Wars-Person-Highlight)
 1. [Sepecial Principles](#Special-Principles)
-1. [Instalation](#intalation)
+1. [Instalation](#instalation)
 1. [Guide](#Guide) 
 1. [Person Panel Explanation](#Person-Panel)
 1. [Other Elements Explanation](#Other-Elements)
