@@ -1,6 +1,7 @@
 ### Table Of content
 1. [Project Introduction](#star-Wars-Person-Highlight)
 1. [Sepecial Principles](#Special-Principles)
+1. [Instalation](#intalation)
 1. [Guide](#Guide) 
 1. [Person Panel Explanation](#Person-Panel)
 1. [Other Elements Explanation](#Other-Elements)
@@ -29,6 +30,13 @@ This project was created based on special principles:
  - Create function which support error handling.
  - Use localstorage to display data from previous usage.
 
+## [Instalation](#Table-of-content)
+We need to copy and put all the code with subfolders into one folder where npm packages such as: axios and vite are installed. 
+The easiest way to install these packages is to go to the folder directory where you want to have this Star Wars character highlighting application, and then run this command:
+```
+npm install axios vite
+```
+Then just put the downloaded files (just swap the files) and run this application - where the packages are installed.
 ## [Guide](#Table-of-content)
 
 Right before some data will appear we have some inner screen which is represented by blury loading screen. Immediately after that, we will be able to see 2 cards, which are dynamically downloaded data from the SWAPI application and entered directly into the created card object.
